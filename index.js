@@ -1,5 +1,6 @@
 const express = require('express');
 const app= express();
+//Esto lee el .env
 const path= require('path');
 require('dotenv').config();
 
