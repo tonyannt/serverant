@@ -7,15 +7,11 @@ require('dotenv').config();
 
 //Crear servidor de sockets how to use
 const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+//Se manda el io
+module.exports.io = require('socket.io')(server);
+//extrae la otra parte del código
+require('./Sockets/socket');
 
-//Mensajes de Sockets client: computadora resien conectada
-io.on('connection', client => {
-    console.log('cliente conectado');
-    client.on('disconnect', () => { 
-        console.log('Cliente desconectado');
-     });
-  });
 
 //Conecta a pagina o dispositivo
 const publicPacth= path.resolve( __dirname, 'public');
@@ -27,4 +23,4 @@ server.listen(process.env.PORT, (err) =>{//Escucha peticiones y cacha errores
     if(err) throw new Error(err); 
 
     console.log('servidor corriendo en puerto',process.env.PORT );
-} );
+} ); 
